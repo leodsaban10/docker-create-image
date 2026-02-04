@@ -1,11 +1,14 @@
-# Lab Submission
+## Docker Compose Stack Commands
 
-### Build Command
-docker build -t my-website:latest .
+### Deploy the stack
+```bash
+docker swarm init
+docker stack deploy -c docker-compose.yaml mystack
+docker stack services mystack
 
-### Run Command
-docker run -d -P --name assignment-site my-website:latest
+docker service scale mystack_service-one=7
+docker service ps mystack_service-one
 
-### Browser URL
-1. Find the port mapping in Docker Desktop.
-2. Visit http://localhost:[PORT_NUMBER]
+docker stack rm mystack
+docker ps
+docker container prune -f
